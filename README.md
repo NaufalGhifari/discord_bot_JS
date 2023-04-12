@@ -2,4 +2,4 @@
 My relationship with JavaScript is composed of: 
 - 0% comprehension 
 - 100% apprehension 
-Hence why I'm making a bot in JS, because that sounds like a good idea.
+Hence why I'm making a bot in JS, because that sounds like a good way to help me learn JS.
