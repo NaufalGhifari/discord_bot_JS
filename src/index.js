@@ -57,9 +57,22 @@ client.on('interactionCreate', (interaction) => {
          */
 
         const URL = interaction.options.get('yt-link').value;
+        console.log(`URL: ${URL}`);
+
         const ytdl = require('ytdl-core');
+
+        if(!ytdl.validateURL(URL)){
+            console.log(`Unable to parse a valid video ID with: ${URL}`);
+        } else{
+            console.log(`URL parses a valid video ID`);
+        }
+
+        /** all good up to here i think */
+
         const Discord = require('@discordjs/voice');
         const stream = ytdl(URL, {filter: 'audioonly'});
+        const stream_info = ytdl.getInfo(URL, {filter: 'audioonly'});
+        console.log(`title: ${stream_info.videoDetails.title}`);
         
         const player = Discord.createAudioPlayer();
         const resource = Discord.createAudioResource(stream);
@@ -68,7 +81,6 @@ client.on('interactionCreate', (interaction) => {
             channelId: interaction.channel.id,
             guildId: interaction.guild.id,
             adapterCreator: interaction.guild.voiceAdapterCreator
-
         });
 
         player.play(resource);
